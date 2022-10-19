@@ -1,4 +1,5 @@
 import pathlib
+from pickle import DUP
 import yaml
 import argparse
 import sys
@@ -11,7 +12,7 @@ from base_juno_pipeline.base_juno_pipeline import (
 )
 
 
-class TemplateRun(PipelineStartup, RunSnakemake):
+class PopulationRun(PipelineStartup, RunSnakemake):
     def __init__(
         self,
         input_dir,
@@ -29,7 +30,7 @@ class TemplateRun(PipelineStartup, RunSnakemake):
         )
         RunSnakemake.__init__(
             self,
-            pipeline_name="template",
+            pipeline_name="population",
             pipeline_version="0.1.0",
             output_dir=output_dir,
             workdir=pathlib.Path(__file__).parent.resolve(),
@@ -45,6 +46,10 @@ class TemplateRun(PipelineStartup, RunSnakemake):
         }
         with open(self.user_parameters, "w") as f:
             yaml.dump(self.config_params, f, default_flow_style=False)
+
+        # print(self.sample_dict)
+        with open(self.sample_sheet, 'w') as f:
+            yaml.dump(self.sample_dict, f, default_flow_style=False)
         self.run_snakemake()
 
 
@@ -100,7 +105,7 @@ if __name__ == "__main__":
         help="Extra arguments to be passed to snakemake API (https://snakemake.readthedocs.io/en/stable/api_reference/snakemake.html).",
     )
     args = parser.parse_args()
-    TemplateRun(
+    PopulationRun(
         input_dir=args.input,
         output_dir=args.output,
         local=args.local,

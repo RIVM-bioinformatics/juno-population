@@ -1,4 +1,5 @@
-# Juno-Template
+# Juno-Population
+- [ ] TODO: Write readme
 A template pipeline where the other juno pipelines are based on.
 
 ## Contribution guidelines

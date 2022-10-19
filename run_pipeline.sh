@@ -25,7 +25,7 @@ fi
 #----------------------------------------------#
 # Create/update necessary environments
 PATH_MAMBA_YAML="envs/mamba.yaml"
-PATH_MASTER_YAML="envs/template_master.yaml"
+PATH_MASTER_YAML="envs/population_master.yaml"
 MAMBA_NAME=$(head -n 1 ${PATH_MAMBA_YAML} | cut -f2 -d ' ')
 MASTER_NAME=$(head -n 1 ${PATH_MASTER_YAML} | cut -f2 -d ' ')
 
@@ -56,7 +56,7 @@ fi
 
 set -euo pipefail
 
-python template.py --queue "${QUEUE}" -i "${input_dir}" -o "${output_dir}"
+python population.py -i "${input_dir}" -o "${output_dir}"
 
 result=$?
 

@@ -5,8 +5,6 @@ sample_sheet=config["sample_sheet"]
 with open(sample_sheet) as f:
     SAMPLES = yaml.safe_load(f)
 
-print(SAMPLES)
-
 OUT = config["out"]
 
 localrules:

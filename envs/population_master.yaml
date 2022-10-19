@@ -1,4 +1,4 @@
-name: template_master
+name: population_master
 channels:
   - bioconda
   - conda-forge
