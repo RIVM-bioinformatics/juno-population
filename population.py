@@ -17,7 +17,7 @@ class PopulationRun(PipelineStartup, RunSnakemake):
         self,
         input_dir,
         output_dir,
-        input_type="fastq",
+        input_type="both",
         unlock=False,
         rerunincomplete=False,
         dryrun=False,

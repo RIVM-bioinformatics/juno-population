@@ -12,8 +12,9 @@ localrules:
 
 
 include: "workflow/rules/rule.smk"
+include: "workflow/rules/createQfile.smk"
 
 
 rule all:
     input:
-        expand(OUT + "/{sample}_combined.fastq", sample=SAMPLES),
+        expand(OUT + "/{sample}_qfile.txt", sample=SAMPLES),
