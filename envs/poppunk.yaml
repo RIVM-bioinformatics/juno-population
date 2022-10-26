@@ -1,0 +1,11 @@
+name: poppunk_test
+channels:
+  - bioconda
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+  - popPUNK
+  # Joblib 1.2.0 breaks HDBscan clustering that is used by popPUNK. 
+  # Temporarily pin to v1.1, beware of vulnerability that triggered release of joblib v1.2 https://nvd.nist.gov/vuln/detail/CVE-2022-21797
+  - joblib==1.1.0

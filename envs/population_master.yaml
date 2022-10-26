@@ -6,7 +6,7 @@ channels:
   - defaults
 dependencies:
   - git
-  - mamba
+  - mamba==0.27
   - pandas
   - snakemake
   - pip

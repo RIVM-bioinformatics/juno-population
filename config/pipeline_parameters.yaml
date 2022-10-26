@@ -1,5 +1,9 @@
 threads:
     template_rule: 1
+    create_Qfile: 1
+    fasta_popPUNK: 8
 
 mem_gb:
     template_rule: 1
+    create_Qfile: 1
+    fasta_popPUNK: 1

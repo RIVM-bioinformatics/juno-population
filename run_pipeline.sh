@@ -26,8 +26,10 @@ fi
 # Create/update necessary environments
 PATH_MAMBA_YAML="envs/mamba.yaml"
 PATH_MASTER_YAML="envs/population_master.yaml"
+PATH_POPPUNK_YAML="envs/poppunk.yaml"
 MAMBA_NAME=$(head -n 1 ${PATH_MAMBA_YAML} | cut -f2 -d ' ')
 MASTER_NAME=$(head -n 1 ${PATH_MASTER_YAML} | cut -f2 -d ' ')
+POPPUNK_NAME=$(head -n 1 ${PATH_POPPUNK_YAML} | cut -f2 -d ' ')
 
 echo -e "\nUpdating necessary environments to run the pipeline..."
 
@@ -40,6 +42,7 @@ conda env update -f "${PATH_MAMBA_YAML}"
 source activate "${MAMBA_NAME}"
 
 mamba env update -f "${PATH_MASTER_YAML}"
+mamba env update -f "${PATH_POPPUNK_YAML}"
 
 source activate "${MASTER_NAME}"
 

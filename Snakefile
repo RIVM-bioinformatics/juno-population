@@ -13,8 +13,9 @@ localrules:
 
 include: "workflow/rules/rule.smk"
 include: "workflow/rules/createQfile.smk"
+include: "workflow/rules/fastaPopPUNK.smk"
 
 
 rule all:
     input:
-        expand(OUT + "/{sample}_qfile.txt", sample=SAMPLES),
+        expand(OUT + "/{sample}_poppunk/", sample=SAMPLES),
