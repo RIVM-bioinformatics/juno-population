@@ -12,8 +12,8 @@ localrules:
 
 
 include: "workflow/rules/rule.smk"
-include: "workflow/rules/createQfile.smk"
-include: "workflow/rules/fastaPopPUNK.smk"
+include: "workflow/rules/createQfileFasta.smk"
+include: "workflow/rules/PopPUNK.smk"
 
 
 rule all:

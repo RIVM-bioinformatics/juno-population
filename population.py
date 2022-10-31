@@ -17,6 +17,8 @@ class PopulationRun(PipelineStartup, RunSnakemake):
         self,
         input_dir,
         output_dir,
+        species=None,
+        db_dir="/mnt/db/juno/poppunk/",
         input_type="both",
         unlock=False,
         rerunincomplete=False,
@@ -39,15 +41,25 @@ class PopulationRun(PipelineStartup, RunSnakemake):
             dryrun=dryrun,
             **kwargs,
         )
+
+        # Specific Juno-Population pipeline attributes
+        self.species = species
+        self.db_dir = db_dir
+        self.user_parameters = pathlib.Path("config/user_parameters.yaml")
+
+        # Start pipeline
         self.start_juno_pipeline()
+
+        # Create user_parameters.yaml and sample_sheet.yaml files
         self.config_params = {
             "input_dir": str(self.input_dir),
             "out": str(self.output_dir),
+            "species": str(self.species),
+            "db_dir": str(self.db_dir)
         }
         with open(self.user_parameters, "w") as f:
             yaml.dump(self.config_params, f, default_flow_style=False)
 
-        # print(self.sample_dict)
         with open(self.sample_sheet, 'w') as f:
             yaml.dump(self.sample_dict, f, default_flow_style=False)
         self.run_snakemake()
@@ -72,6 +84,13 @@ if __name__ == "__main__":
         metavar="DIR",
         default="output",
         help="Relative or absolute path to the output directory. If non is given, an 'output' directory will be created in the current directory.",
+    )
+    parser.add_argument(
+        "-s",
+        "--species",
+        default=None,
+        required=False,
+        help="The species name. It should be consistent with the popPUNK databases as found on www.poppunk.net/pages/databases.html (e.g. Streptococcus_pneumoniae)",
     )
     parser.add_argument(
         "-l",
@@ -108,6 +127,7 @@ if __name__ == "__main__":
     PopulationRun(
         input_dir=args.input,
         output_dir=args.output,
+        species=args.species,
         local=args.local,
         unlock=args.unlock,
         rerunincomplete=args.rerunincomplete,

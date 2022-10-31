@@ -9,9 +9,11 @@ rule fasta_popPUNK:
         "../../envs/poppunk.yaml"
     message:
         "Running popPUNK clustering"
+    params:
+        species = config["species"]
     resources:
         mem_gb=config["mem_gb"]["fasta_popPUNK"],
     threads: config["threads"]["fasta_popPUNK"]
     shell: """
-    poppunk_assign --db /mnt/db/juno/poppunk/streptococcus/GPS_v4_references --threads {threads} --query {input} --output {output.output_dir} 2> {log}
+    echo {species} & poppunk_assign --db /mnt/db/juno/poppunk/streptococcus/GPS_v4_references --threads {threads} --query {input} --output {output.output_dir} 2> {log}
     """

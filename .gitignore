@@ -134,3 +134,4 @@ envs/src
 input
 output
 config/sample_sheet.yaml
+config/user_parameters.yaml

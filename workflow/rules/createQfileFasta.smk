@@ -1,4 +1,4 @@
-rule create_Qfile:
+rule create_Qfile_fasta:
     """Create popPUNKs required query file, a textfile containing sampleID and location of fasta"""
     # TODO: popPUNK can also work from fastqs. This approach completely ignores this.
     input:
