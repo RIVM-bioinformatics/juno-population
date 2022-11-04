@@ -4,7 +4,7 @@ rule create_Qfile_fasta:
     input:
         lambda wc: SAMPLES[wc.sample]["assembly"]
     output:
-        OUT + "/{sample}_qfile.txt"
+        OUT + "/q_files/{sample}_qfile.txt"
     resources:
         mem_gb=config["mem_gb"]["create_Qfile"],
     threads: config["threads"]["create_Qfile"]

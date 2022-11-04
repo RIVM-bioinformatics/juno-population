@@ -9,6 +9,7 @@ dependencies:
   - mamba==0.27
   - pandas
   - snakemake
+  - pandas
   - pip
   - pip:
     - "--editable=git+https://github.com/RIVM-bioinformatics/base_juno_pipeline.git#egg=base_juno"

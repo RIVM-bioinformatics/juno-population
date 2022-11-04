@@ -1,12 +1,12 @@
 rule fasta_popPUNK:
     input:
-        expand(OUT + "/{sample}_qfile.txt", sample=SAMPLES)
+        OUT + "/q_files/{sample}_qfile.txt"
     output:
-        output_dir = directory(OUT + "/{sample}_poppunk/"),
-        output_csv = OUT + "/{sample}_poppunk/{sample}_poppunk_clusters.csv",
-        output_pkl = OUT + "/{sample}_poppunk/{sample}_poppunk.dists.pkl",
-        output_npy = OUT + "/{sample}_poppunk/{sample}_poppunk.dists.npy",
-        output_h5 = OUT + "/{sample}_poppunk/{sample}_poppunk.h5",
+        output_dir = directory(OUT + "/results_per_sample/{sample}_poppunk/"),
+        output_csv = OUT + "/results_per_sample/{sample}_poppunk/{sample}_poppunk_clusters.csv",
+        output_pkl = OUT + "/results_per_sample/{sample}_poppunk/{sample}_poppunk.dists.pkl",
+        output_npy = OUT + "/results_per_sample/{sample}_poppunk/{sample}_poppunk.dists.npy",
+        output_h5 = OUT + "/results_per_sample/{sample}_poppunk/{sample}_poppunk.h5",
     log:
         OUT + "/log/{sample}_poppunk.log"
     conda:
