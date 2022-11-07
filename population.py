@@ -11,6 +11,8 @@ from base_juno_pipeline.base_juno_pipeline import (
     helper_functions,
 )
 
+from database_locations import species_database_locations
+
 
 class PopulationRun(PipelineStartup, RunSnakemake):
     def __init__(
@@ -43,7 +45,13 @@ class PopulationRun(PipelineStartup, RunSnakemake):
         )
 
         # Specific Juno-Population pipeline attributes
-        self.db_dir = self.determine_db_dir(species, db_dir)
+        if not db_dir:
+            self.db_dir = species_database_locations.get(species)
+            if not self.db_dir:
+                raise KeyError(
+                    "Cannot determine db_dir: This species is currently not configured AND no db_dir was provided. Manually provide a db_dir via -b/--database, or ask for your species to be configured."
+                )
+
         self.user_parameters = pathlib.Path("config/user_parameters.yaml")
 
         # Start pipeline
@@ -58,28 +66,9 @@ class PopulationRun(PipelineStartup, RunSnakemake):
         with open(self.user_parameters, "w") as f:
             yaml.dump(self.config_params, f, default_flow_style=False)
 
-        with open(self.sample_sheet, 'w') as f:
+        with open(self.sample_sheet, "w") as f:
             yaml.dump(self.sample_dict, f, default_flow_style=False)
         self.run_snakemake()
-
-
-    def determine_db_dir(self, species, db_dir=None):
-        """
-        Provided the species and a db_dir optionally set by the user, determines the actual db_dir to use
-        """
-        if db_dir is not None:
-            return db_dir
-        # Future feature: Import a yaml with species_db_dirs instead?
-        species_db_dirs = {
-            'streptococcus_pneumoniae': pathlib.Path('/mnt/db/juno/poppunk/streptococcus/GPS_v4_references'),
-        }
-
-        species_db_dir = species_db_dirs.get(species)
-
-        if species_db_dir is None:
-            raise KeyError('Cannot determine db_dir: This species is currently not configured AND no db_dir was provided. Manually provide a db_dir via -b/--database, or ask for your species to be configured.')
-
-        return species_db_dir
 
 
 if __name__ == "__main__":
