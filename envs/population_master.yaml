@@ -9,4 +9,3 @@ dependencies:
   - mamba==0.27
   - pandas
   - snakemake
-  - pandas
