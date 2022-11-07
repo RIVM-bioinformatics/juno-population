@@ -1,3 +1,4 @@
-[submodule "juno-library"]
+[submodule "base_juno_pipeline"]
 	path = base_juno_pipeline
-	url = https://github.com/RIVM-bioinformatics/base_juno_pipeline.git
+	url = https://github.com/RIVM-bioinformatics/juno-library.git
+	branch = v0.9.2
