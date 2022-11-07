@@ -13,7 +13,7 @@ rule fasta_popPUNK:
     log:
         OUT + "/log/{sample}_poppunk.log",
     conda:
-        "../../envs/poppunk.yaml"
+        "../envs/poppunk.yaml"
     message:
         "Running popPUNK clustering"
     params:
