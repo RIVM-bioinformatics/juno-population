@@ -1,4 +1,4 @@
-name: poppunk_test
+name: poppunk
 channels:
   - bioconda
   - conda-forge
