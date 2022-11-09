@@ -4,11 +4,11 @@ set -euo pipefail
 
 #----------------------------------------------#
 # User parameters
-if [ ! -z "${1}" ] || [ ! -z "${2}" ] #|| [ ! -z "${irods_input_projectID}" ]
+if [ ! -z "${1}" ] || [ ! -z "${2}" ] || [ ! -z "${irods_input_projectID}" ]
 then
    input_dir="${1}"
    output_dir="${2}"
-#    PROJECT_NAME="${irods_input_projectID}"
+   PROJECT_NAME="${irods_input_projectID}"
 else
     echo "One of the parameters is missing, make sure there is an input directory, output directory and project name(param 1, 2 or irods_input_projectID)."
     exit 1
@@ -21,6 +21,14 @@ then
 else
   input_fastq="${input_dir}/clean_fastq"
 fi
+
+case $PROJECT_NAME in
+
+  rvp_spn)
+    GENUS_ALL="streptococcus_pneumoniae"
+    ;;
+      
+esac
 
 #----------------------------------------------#
 # Create/update necessary environments
@@ -56,7 +64,7 @@ fi
 
 set -euo pipefail
 
-python population.py -i "${input_dir}" -o "${output_dir}"
+python population.py --queue "${QUEUE}"-i "${input_dir}" -o "${output_dir}" -s "${GENUS_ALL}"
 
 result=$?
 
