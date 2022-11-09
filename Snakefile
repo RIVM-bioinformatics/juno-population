@@ -12,7 +12,7 @@ localrules:
     all,
 
 
-include: "workflow/rules/makeSummaryCsv.smk"
+include: "workflow/rules/aggregatePoppunkCsv.smk"
 include: "workflow/rules/createQfileFasta.smk"
 include: "workflow/rules/PopPUNK.smk"
 

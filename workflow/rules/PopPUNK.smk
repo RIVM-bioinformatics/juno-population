@@ -1,4 +1,4 @@
-rule fasta_popPUNK:
+rule assign_popPUNK_cluster:
     input:
         OUT + "/q_files/{sample}_qfile.txt",
     output:

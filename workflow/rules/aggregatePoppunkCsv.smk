@@ -1,4 +1,4 @@
-rule makeSummaryCsv:
+rule aggregate_poppunk_csv:
     input:
         OUT + "/results_per_sample/",
     output:
