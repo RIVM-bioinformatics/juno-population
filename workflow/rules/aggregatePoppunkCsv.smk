@@ -1,6 +1,6 @@
 rule aggregate_poppunk_csv:
     input:
-        OUT + "/results_per_sample/",
+        expand(OUT + "/results_per_sample/{sample}_poppunk/{sample}_poppunk_clusters.csv", sample=SAMPLES),
     output:
         OUT + "/poppunk_clusters.csv",
     log:
@@ -8,11 +8,11 @@ rule aggregate_poppunk_csv:
     message:
         "Merging individual popPUNK output to one csv."
     resources:
-        mem_gb=config["mem_gb"]["makeSummaryCsv"],
-    params:
-        script="workflow/scripts/make_summary_csv.py",
-    threads: config["threads"]["makeSummaryCsv"]
-    shell:
-        """
-        python {params.script} -i {input} > {output}
-        """
+        mem_gb=config["mem_gb"]["aggregatePoppunkCsv"],
+    threads: config["threads"]["aggregatePoppunkCsv"]
+    run:
+        import pandas as pd
+                        
+        aggregated_csv = pd.concat([pd.read_csv(f) for f in input], ignore_index=True)
+        aggregated_csv.to_csv(output[0])
+

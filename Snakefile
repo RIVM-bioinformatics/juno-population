@@ -19,5 +19,4 @@ include: "workflow/rules/PopPUNK.smk"
 
 rule all:
     input:
-        expand(OUT + "/results_per_sample/{sample}_poppunk/", sample=SAMPLES),
         expand(OUT + "/poppunk_clusters.csv"),
