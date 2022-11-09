@@ -64,7 +64,7 @@ fi
 
 set -euo pipefail
 
-python population.py --queue "${QUEUE}"-i "${input_dir}" -o "${output_dir}" -s "${GENUS_ALL}"
+python population.py --queue "${QUEUE}" -i "${input_dir}" -o "${output_dir}" -s "${GENUS_ALL}"
 
 result=$?
 

@@ -25,6 +25,7 @@ class PopulationRun(PipelineStartup, RunSnakemake):
         unlock=False,
         rerunincomplete=False,
         dryrun=False,
+        queue="bio",
         **kwargs
     ):
         PipelineStartup.__init__(
@@ -38,6 +39,7 @@ class PopulationRun(PipelineStartup, RunSnakemake):
             pipeline_version="0.1.0",
             output_dir=output_dir,
             workdir=pathlib.Path(__file__).parent.resolve(),
+            queue=queue,
             unlock=unlock,
             rerunincomplete=rerunincomplete,
             dryrun=dryrun,
@@ -111,6 +113,16 @@ if __name__ == "__main__":
         action="store_true",
         help="Running pipeline locally (instead of in a computer cluster). Default is running it in a cluster.",
     )
+    parser.add_argument(
+        "-q",
+        "--queue",
+        type = str,
+        required=False,
+        default = "bio",
+        metavar = "STR",
+        dest="queue",
+        help = "Name of the queue that the job will be sumitted to if working on a cluster."
+    )
     # Snakemake arguments
     parser.add_argument(
         "-u",
@@ -143,6 +155,7 @@ if __name__ == "__main__":
         species=args.species,
         db_dir=args.database,
         local=args.local,
+        queue=args.queue,
         unlock=args.unlock,
         rerunincomplete=args.rerunincomplete,
         dryrun=args.dryrun,
