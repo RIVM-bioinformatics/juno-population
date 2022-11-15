@@ -116,12 +116,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "-q",
         "--queue",
-        type = str,
+        type=str,
         required=False,
-        default = "bio",
-        metavar = "STR",
+        default="bio",
+        metavar="STR",
         dest="queue",
-        help = "Name of the queue that the job will be sumitted to if working on a cluster."
+        help="Name of the queue that the job will be sumitted to if working on a cluster.",
     )
     # Snakemake arguments
     parser.add_argument(
