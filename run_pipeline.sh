@@ -6,9 +6,9 @@ set -euo pipefail
 # User parameters
 if [ ! -z "${1}" ] || [ ! -z "${2}" ] || [ ! -z "${irods_input_projectID}" ]
 then
-   input_dir="${1}"
-   output_dir="${2}"
-   PROJECT_NAME="${irods_input_projectID}"
+    input_dir="${1}"
+    output_dir="${2}"
+    PROJECT_NAME="${irods_input_projectID}"
 else
     echo "One of the parameters is missing, make sure there is an input directory, output directory and project name(param 1, 2 or irods_input_projectID)."
     exit 1
@@ -16,17 +16,18 @@ fi
 
 if [ ! -d "${input_dir}" ] || [ ! -d "${output_dir}" ]
 then
-  echo "The input directory $input_dir, output directory $output_dir or fastq dir ${input_dir}/clean_fastq does not exist"
-  exit 1
+    echo "The input directory $input_dir, output directory $output_dir or fastq dir ${input_dir}/clean_fastq does not exist"
+    exit 1
 else
-  input_fastq="${input_dir}/clean_fastq"
+    input_fastq="${input_dir}/clean_fastq"
 fi
 
 case $PROJECT_NAME in
 
-  rvp_spn)
-    GENUS_ALL="streptococcus_pneumoniae"
-    ;;
+    rvp_spn)
+        GENUS_ALL="streptococcus_pneumoniae";;
+    *)
+        GENUS_ALL="other";;
       
 esac
 
