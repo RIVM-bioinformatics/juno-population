@@ -1,4 +1,4 @@
-name: population_master
+name: juno_population
 channels:
   - bioconda
   - conda-forge
