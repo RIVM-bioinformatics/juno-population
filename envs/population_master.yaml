@@ -1,0 +1,11 @@
+name: juno_population
+channels:
+  - bioconda
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+  - git
+  - mamba==0.27
+  - pandas
+  - snakemake

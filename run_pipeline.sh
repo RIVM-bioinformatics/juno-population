@@ -4,11 +4,11 @@ set -euo pipefail
 
 #----------------------------------------------#
 # User parameters
-if [ ! -z "${1}" ] || [ ! -z "${2}" ] #|| [ ! -z "${irods_input_projectID}" ]
+if [ ! -z "${1}" ] || [ ! -z "${2}" ] || [ ! -z "${irods_input_projectID}" ]
 then
-   input_dir="${1}"
-   output_dir="${2}"
-#    PROJECT_NAME="${irods_input_projectID}"
+    input_dir="${1}"
+    output_dir="${2}"
+    PROJECT_NAME="${irods_input_projectID}"
 else
     echo "One of the parameters is missing, make sure there is an input directory, output directory and project name(param 1, 2 or irods_input_projectID)."
     exit 1
@@ -16,16 +16,25 @@ fi
 
 if [ ! -d "${input_dir}" ] || [ ! -d "${output_dir}" ]
 then
-  echo "The input directory $input_dir, output directory $output_dir or fastq dir ${input_dir}/clean_fastq does not exist"
-  exit 1
+    echo "The input directory $input_dir, output directory $output_dir or fastq dir ${input_dir}/clean_fastq does not exist"
+    exit 1
 else
-  input_fastq="${input_dir}/clean_fastq"
+    input_fastq="${input_dir}/clean_fastq"
 fi
+
+case $PROJECT_NAME in
+
+    rvp_spn)
+        GENUS_ALL="streptococcus_pneumoniae";;
+    *)
+        GENUS_ALL="other";;
+      
+esac
 
 #----------------------------------------------#
 # Create/update necessary environments
 PATH_MAMBA_YAML="envs/mamba.yaml"
-PATH_MASTER_YAML="envs/template_master.yaml"
+PATH_MASTER_YAML="envs/population_master.yaml"
 MAMBA_NAME=$(head -n 1 ${PATH_MAMBA_YAML} | cut -f2 -d ' ')
 MASTER_NAME=$(head -n 1 ${PATH_MASTER_YAML} | cut -f2 -d ' ')
 
@@ -56,7 +65,7 @@ fi
 
 set -euo pipefail
 
-python template.py --queue "${QUEUE}" -i "${input_dir}" -o "${output_dir}"
+python population.py --queue "${QUEUE}" -i "${input_dir}" -o "${output_dir}" -s "${GENUS_ALL}"
 
 result=$?
 

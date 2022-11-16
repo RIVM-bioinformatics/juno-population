@@ -1,6 +1,11 @@
-# Juno-Template
+# Juno-Population
+- [ ] TODO: Write readme
 A template pipeline where the other juno pipelines are based on.
 
+Before running the pipeline be sure to initialize the submodules:
+```bash
+git submodule update --init --recursive
+```
 ## Contribution guidelines
 Juno pipelines use a [feature branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow). To work on features, create a branch from the `main` branch to make changes to. This branch can be merged to the main branch via a pull request. Hotfixes for bugs can be committed to the `main` branch.
 
