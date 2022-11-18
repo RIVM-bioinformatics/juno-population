@@ -9,7 +9,7 @@ rule aggregate_poppunk_csv:
         "Merging individual popPUNK output to one csv."
     resources:
         mem_gb=config["mem_gb"]["aggregatePoppunkCsv"],
-    threads: config["threads"]["makeSummaryCsv"]
+    threads: config["threads"]["aggregatePoppunkCsv"]
     run:
         import pandas as pd
                         
