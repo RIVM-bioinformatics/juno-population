@@ -1,3 +1,13 @@
+import os
+
+
+def create_external_clustering_flag(external_clustering_flag, db_dir):
+    if external_clustering_flag:
+        db_dir_name = os.path.basename(os.path.normpath(db_dir))
+        return f"--external-clustering {db_dir}/{db_dir_name}_external_clusters.csv"
+    return ""
+
+
 rule assign_popPUNK_cluster:
     input:
         OUT + "/q_files/{sample}_qfile.txt",
@@ -10,6 +20,8 @@ rule assign_popPUNK_cluster:
         output_npy=OUT
         + "/results_per_sample/{sample}_poppunk/{sample}_poppunk.dists.npy",
         output_h5=OUT + "/results_per_sample/{sample}_poppunk/{sample}_poppunk.h5",
+        external_csv=OUT
+        + "/results_per_sample/{sample}_poppunk/{sample}_poppunk_external_clusters.csv" if config["external_clustering"] else [],
     log:
         OUT + "/log/{sample}_poppunk.log",
     conda:
@@ -18,6 +30,9 @@ rule assign_popPUNK_cluster:
         "Running popPUNK clustering"
     params:
         db_dir=config["db_dir"],
+        external_clustering=create_external_clustering_flag(
+            config["external_clustering"], config["db_dir"]
+        ),
     resources:
         mem_gb=config["mem_gb"]["fasta_popPUNK"],
     threads: config["threads"]["fasta_popPUNK"]
@@ -25,5 +40,9 @@ rule assign_popPUNK_cluster:
         """
         poppunk_assign \
             --db {params.db_dir} \
-            --threads {threads} --query {input} --output {output.output_dir} 2> {log}
+            --threads {threads} --query {input} --output {output.output_dir} {params.external_clustering}\
+            2> {log}
         """
+
+
+

@@ -21,6 +21,7 @@ class PopulationRun(PipelineStartup, RunSnakemake):
         output_dir,
         species=None,
         db_dir=None,
+        external_clustering=False,
         input_type="fasta",
         unlock=False,
         rerunincomplete=False,
@@ -64,6 +65,7 @@ class PopulationRun(PipelineStartup, RunSnakemake):
             "input_dir": str(self.input_dir),
             "out": str(self.output_dir),
             "db_dir": str(self.db_dir),
+            "external_clustering": external_clustering,
         }
         with open(self.user_parameters, "w") as f:
             yaml.dump(self.config_params, f, default_flow_style=False)
@@ -75,7 +77,7 @@ class PopulationRun(PipelineStartup, RunSnakemake):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Template juno pipeline. If you see this message please change it to something appropriate"
+        description="Juno-population pipeline. Pipeline to analyse population structures (by running popPUNK)."
     )
     parser.add_argument(
         "-i",
@@ -106,6 +108,12 @@ if __name__ == "__main__":
         default=None,
         required=False,
         help="The path to the popPUNK database to use. This overrides information provide with the --species argument.",
+    )
+    parser.add_argument(
+        "--external-clustering",
+        action='store_true',
+        required=False,
+        help="Add if the popPUNK database contains an external_cluster.csv file to annotate clusters, rather than default cluster numbering. See popPUNK docs and pneumogen.net for further details."
     )
     parser.add_argument(
         "-l",
@@ -154,6 +162,7 @@ if __name__ == "__main__":
         output_dir=args.output,
         species=args.species,
         db_dir=args.database,
+        external_clustering=args.external_clustering,
         local=args.local,
         queue=args.queue,
         unlock=args.unlock,
