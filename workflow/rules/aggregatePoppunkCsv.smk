@@ -9,9 +9,10 @@ rule aggregate_poppunk_csv:
         "Merging individual popPUNK output to one csv."
     resources:
         mem_gb=config["mem_gb"]["aggregatePoppunkCsv"],
-    threads: config["threads"]["aggregatePoppunkCsv"]
+    threads: config["threads"]["makeSummaryCsv"]
     run:
         import pandas as pd
-
+                        
         aggregated_csv = pd.concat([pd.read_csv(f) for f in input], ignore_index=True)
         aggregated_csv.to_csv(output[0])
+
