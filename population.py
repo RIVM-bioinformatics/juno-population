@@ -107,7 +107,7 @@ if __name__ == "__main__":
         "--database",
         default=None,
         required=False,
-        help="The path to the popPUNK database to use. This overrides information provide with the --species argument.",
+        help="The name of popPUNK database to use, no trailing '/' when providing a path. This overrides information provide with the --species argument.",
     )
     parser.add_argument(
         "--external-clustering",
