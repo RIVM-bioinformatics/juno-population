@@ -111,9 +111,9 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--external-clustering",
-        action='store_true',
+        action="store_true",
         required=False,
-        help="Add if the popPUNK database contains an external_cluster.csv file to annotate clusters, rather than default cluster numbering. See popPUNK docs and pneumogen.net for further details."
+        help="Add if the popPUNK database contains an external_cluster.csv file to annotate clusters, rather than default cluster numbering. See popPUNK docs and pneumogen.net for further details.",
     )
     parser.add_argument(
         "-l",

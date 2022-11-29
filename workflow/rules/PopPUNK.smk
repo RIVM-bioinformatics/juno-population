@@ -21,7 +21,9 @@ rule assign_popPUNK_cluster:
         + "/results_per_sample/{sample}_poppunk/{sample}_poppunk.dists.npy",
         output_h5=OUT + "/results_per_sample/{sample}_poppunk/{sample}_poppunk.h5",
         external_csv=OUT
-        + "/results_per_sample/{sample}_poppunk/{sample}_poppunk_external_clusters.csv" if config["external_clustering"] else [],
+        + "/results_per_sample/{sample}_poppunk/{sample}_poppunk_external_clusters.csv"
+        if config["external_clustering"]
+        else [],
     log:
         OUT + "/log/{sample}_poppunk.log",
     conda:
@@ -43,6 +45,3 @@ rule assign_popPUNK_cluster:
             --threads {threads} --query {input} --output {output.output_dir} {params.external_clustering}\
             2> {log}
         """
-
-
-
