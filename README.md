@@ -78,17 +78,9 @@ python population.py -i path/to/fasta_files/ -o output/ -s streptococcus_pneumon
 * **q_files:** Directory containing the input for ```poppunk_assign```. Subsequent analysis by other popPUNK modules (e.g. ```poppunk_visualise``` or building a MST on large datasets) may require these files.
 * **poppunk_clusters.csv:** Summary file with cluster definitions for each sample within the results_per_sample folder.
 
-# TODO
-* License
-* Contact
-* Previous information (see below)
+## License
+This pipeline is licensed with a AGPL3 license. Detailed information can be found inside the 'LICENSE' file in this repository.
 
-# Previous information
-Before running the pipeline be sure to initialize the submodules:
-```bash
-git submodule update --init --recursive
-```
-## Contribution guidelines
-Juno pipelines use a [feature branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow). To work on features, create a branch from the `main` branch to make changes to. This branch can be merged to the main branch via a pull request. Hotfixes for bugs can be committed to the `main` branch.
-
-Please adhere to the [conventional commits](https://www.conventionalcommits.org/) specification for commit messages. These commit messages can be picked up by [release please](https://github.com/googleapis/release-please) to create meaningful release messages.
+## Contact
+* **Contact person:**       Roxanne Wolthuis & Karim Hajji
+* **Email**                 roxanne.wolthuis@rivm.nl / karim.hajji@rivm.nl
