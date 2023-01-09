@@ -1,6 +1,12 @@
 rule aggregate_poppunk_csv:
     input:
         expand(
+            OUT
+            + "/results_per_sample/{sample}_poppunk/{sample}_poppunk_external_clusters.csv",
+            sample=SAMPLES,
+        )
+        if config["external_clustering"]
+        else expand(
             OUT + "/results_per_sample/{sample}_poppunk/{sample}_poppunk_clusters.csv",
             sample=SAMPLES,
         ),

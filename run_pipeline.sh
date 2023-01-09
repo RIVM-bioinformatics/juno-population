@@ -25,9 +25,9 @@ fi
 case $PROJECT_NAME in
 
     rvp_spn)
-        GENUS_ALL="streptococcus_pneumoniae";;
+        SPECIES="streptococcus_pneumoniae";;
     *)
-        GENUS_ALL="other";;
+        SPECIES="other";;
       
 esac
 
@@ -65,7 +65,11 @@ fi
 
 set -euo pipefail
 
-python population.py --queue "${QUEUE}" -i "${input_dir}" -o "${output_dir}" -s "${GENUS_ALL}"
+if [ ${SPECIES} == "streptococcus_pneumoniae" ]; then
+    python population.py --queue "${QUEUE}" -i "${input_dir}" -o "${output_dir}" -s "${SPECIES}" --external-clustering
+else
+    python population.py --queue "${QUEUE}" -i "${input_dir}" -o "${output_dir}" -s "${SPECIES}"
+fi
 
 result=$?
 
