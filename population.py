@@ -1,3 +1,4 @@
+__version__ = 0.1.1
 import pathlib
 from pickle import DUP
 import yaml
@@ -37,7 +38,7 @@ class PopulationRun(PipelineStartup, RunSnakemake):
         RunSnakemake.__init__(
             self,
             pipeline_name="population",
-            pipeline_version="0.1.0",
+            pipeline_version=__version__,
             output_dir=output_dir,
             workdir=pathlib.Path(__file__).parent.resolve(),
             queue=queue,
