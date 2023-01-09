@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.1](https://github.com/RIVM-bioinformatics/juno-population/compare/v0.1.0...v0.1.1) (2023-01-09)
+
+
+### Features
+
+* Support external clustering flag of popPUNK. ([60a8eb0](https://github.com/RIVM-bioinformatics/juno-population/commit/60a8eb01c67eb537f0b4a1c61c81db52f7db8ca5))
+
+
+### Bug Fixes
+
+* Add base_juno to master environment ([e8a06a6](https://github.com/RIVM-bioinformatics/juno-population/commit/e8a06a676454a7dda05ec470bb5eca55532f84b3))
+* Correct the config lookup in aggregatePoppunkCsv rule ([e3365f8](https://github.com/RIVM-bioinformatics/juno-population/commit/e3365f8c7ffba85a311b5d49935bf6a71b21c998))
+
 ## 0.1.0 (2022-11-16)
 
 
