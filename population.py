@@ -1,4 +1,4 @@
-__version__ = "0.1.1"
+from version import __version__
 import pathlib
 from pickle import DUP
 import yaml
