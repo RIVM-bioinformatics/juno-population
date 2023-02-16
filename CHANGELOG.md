@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/RIVM-bioinformatics/juno-population/compare/v0.1.1...v0.1.2) (2023-02-16)
+
+
+### Bug Fixes
+
+* Pin juno-library version ([18c8584](https://github.com/RIVM-bioinformatics/juno-population/commit/18c8584a42e47d80c1532d317e280f513a6d05f3))
+
 ## [0.1.1](https://github.com/RIVM-bioinformatics/juno-population/compare/v0.1.0...v0.1.1) (2023-01-09)
 
 
