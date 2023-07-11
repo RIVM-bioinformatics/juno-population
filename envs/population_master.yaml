@@ -2,8 +2,7 @@ name: juno_population
 channels:
   - bioconda
   - conda-forge
-  - anaconda
-  - defaults
+  - nodefaults
 dependencies:
   - git
   - mamba==0.27
