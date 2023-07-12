@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/RIVM-bioinformatics/juno-population/compare/v0.1.2...v0.1.3) (2023-07-12)
+
+
+### Dependencies
+
+* removing anaconda and defaults channel and adding no defaults ([efb7784](https://github.com/RIVM-bioinformatics/juno-population/commit/efb7784a718da242ce159f7392954ce11b09637a))
+
 ## [0.1.2](https://github.com/RIVM-bioinformatics/juno-population/compare/v0.1.1...v0.1.2) (2023-02-16)
 
 
